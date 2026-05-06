@@ -40,21 +40,50 @@ app.get("/api/resources", (req, res) => {
   res.json(resources);
 });
 
-// Sample bookings route
-app.get("/api/bookings", (req, res) => {
-  const bookings = [
-    {
-      id: 1,
-      studentName: "Demo Student",
-      resourceName: "Study Room A",
-      startTime: "2026-05-10T10:00:00",
-      endTime: "2026-05-10T11:00:00",
-      status: "confirmed",
-      checkedIn: false
-    }
-  ];
+// Sample bookings data
+let bookings = [
+  {
+    id: 1,
+    studentName: "Demo Student",
+    resourceName: "Study Room A",
+    startTime: "2026-05-10T10:00:00",
+    endTime: "2026-05-10T11:00:00",
+    status: "confirmed",
+    checkedIn: false
+  }
+];
 
+// Get all bookings route
+app.get("/api/bookings", (req, res) => {
   res.json(bookings);
+});
+
+// Create booking route
+app.post("/api/bookings", (req, res) => {
+  const { studentName, resourceName, startTime, endTime } = req.body;
+
+  if (!studentName || !resourceName || !startTime || !endTime) {
+    return res.status(400).json({
+      message: "studentName, resourceName, startTime, and endTime are required"
+    });
+  }
+
+  const newBooking = {
+    id: bookings.length + 1,
+    studentName,
+    resourceName,
+    startTime,
+    endTime,
+    status: "confirmed",
+    checkedIn: false
+  };
+
+  bookings.push(newBooking);
+
+  res.status(201).json({
+    message: "Booking created successfully",
+    booking: newBooking
+  });
 });
 
 // Start server
