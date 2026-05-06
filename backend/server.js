@@ -40,6 +40,23 @@ app.get("/api/resources", (req, res) => {
   res.json(resources);
 });
 
+// Sample bookings route
+app.get("/api/bookings", (req, res) => {
+  const bookings = [
+    {
+      id: 1,
+      studentName: "Demo Student",
+      resourceName: "Study Room A",
+      startTime: "2026-05-10T10:00:00",
+      endTime: "2026-05-10T11:00:00",
+      status: "confirmed",
+      checkedIn: false
+    }
+  ];
+
+  res.json(bookings);
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
