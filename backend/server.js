@@ -86,6 +86,26 @@ app.post("/api/bookings", (req, res) => {
   });
 });
 
+// Delete booking route
+app.delete("/api/bookings/:id", (req, res) => {
+  const bookingId = parseInt(req.params.id);
+
+  const bookingExists = bookings.some((booking) => booking.id === bookingId);
+
+  if (!bookingExists) {
+    return res.status(404).json({
+      message: "Booking not found"
+    });
+  }
+
+  bookings = bookings.filter((booking) => booking.id !== bookingId);
+
+  res.json({
+    message: "Booking deleted successfully",
+    bookingId: bookingId
+  });
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
