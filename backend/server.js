@@ -19,6 +19,28 @@ app.get("/api/health", (req, res) => {
   });
 });
 
+// Sample resources route
+app.get("/api/resources", (req, res) => {
+  const resources = [
+    {
+      id: 1,
+      name: "Study Room A",
+      type: "Study Room",
+      location: "Library",
+      capacity: 4
+    },
+    {
+      id: 2,
+      name: "Computer Lab 101",
+      type: "Lab",
+      location: "Engineering Building",
+      capacity: 25
+    }
+  ];
+
+  res.json(resources);
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
