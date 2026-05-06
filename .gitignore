@@ -1,7 +1,26 @@
+# Node
+node_modules/
+npm-debug.log
+
+# Environment variables
+.env
+
+# Logs
 *.log
-docs/User_Manual/
-*-*.txt
-src/styles.css
-docs/Software_Requirement_Specification/SRS_v*.docx
-docs/Software_Design_Document/SDD_v*.docx
-docs/**/README.md
+
+# OS files
+.DS_Store
+
+# Build folders
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.toc
